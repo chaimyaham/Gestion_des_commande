@@ -74,7 +74,7 @@
 
                         <td><%= commande.getCommande_description() %></td>
                         <td>
-                        	 <button type="button" class="btn-sm btn-outline-dark" data-toggle="modal" data-target="#clientModal<%= commande.getCommandeId() %>">
+                        	 <button type="button" class=" btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#clientModal<%= commande.getCommandeId() %>">
                                 infos du client
                             </button>
 
@@ -112,7 +112,7 @@
                         
                         <td>
                             
-                            <button type="button" class="btn-sm btn-outline-primary" data-toggle="modal" data-target="#produitsModal<%= commande.getCommandeId() %>">
+                            <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#produitsModal<%= commande.getCommandeId() %>">
                                 Voir Produits
                             </button>
 
@@ -149,13 +149,13 @@
 							    <div class="col-md-6">
 							        <form action="${pageContext.request.contextPath}/UpdateCommande" method="get">
 							            <input type="hidden" name="commandeId" value="<%= commande.getCommandeId() %>">
-							            <button type="submit" class="btn-sm btn-outline-dark">Update</button>
+							            <button type="submit" class="btn btn-sm btn-outline-dark">Update</button>
 							        </form>
 							    </div>
 							    <div class="col-md-6 ml-2">
 							        <form id="deleteForm" action="${pageContext.request.contextPath}/DeleteCommande" method="post">
 							            <input type="hidden" name="commandeId" value="<%= commande.getCommandeId() %>">
-							            <button type="button" class="btn-sm btn-outline-danger" onclick="confirmDelete()">Delete</button>
+							            <button type="button" class="btn btn-sm btn-outline-danger" onclick="confirmDelete()">Delete</button>
 							        </form>
 							    </div>
 				</td>

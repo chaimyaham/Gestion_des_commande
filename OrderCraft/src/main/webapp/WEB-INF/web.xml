@@ -59,4 +59,24 @@
     <servlet-name>UpdateCommande</servlet-name>
     <url-pattern>/UpdateCommande</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AcceuilProduct</display-name>
+    <servlet-name>AcceuilProduct</servlet-name>
+    <servlet-class>com.orderCraft.gestionCommande.servlets.productController.AcceuilProduct</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AcceuilProduct</servlet-name>
+    <url-pattern>/AcceuilProduct</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddProduct</display-name>
+    <servlet-name>AddProduct</servlet-name>
+    <servlet-class>com.orderCraft.gestionCommande.servlets.productController.AddProduct</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddProduct</servlet-name>
+    <url-pattern>/AddProduct</url-pattern>
+  </servlet-mapping>
 </web-app>
