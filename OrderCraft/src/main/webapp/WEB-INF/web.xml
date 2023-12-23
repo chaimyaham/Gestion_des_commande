@@ -41,16 +41,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>AddProduct</display-name>
-    <servlet-name>AddProduct</servlet-name>
-    <servlet-class>com.orderCraft.gestionCommande.servlets.commandeController.AddProduct</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AddProduct</servlet-name>
-    <url-pattern>/AddProduct</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>DeleteCommande</display-name>
     <servlet-name>DeleteCommande</servlet-name>
     <servlet-class>com.orderCraft.gestionCommande.servlets.commandeController.DeleteCommande</servlet-class>

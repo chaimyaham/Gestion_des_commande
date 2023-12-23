@@ -109,8 +109,7 @@ public class AddCommande extends HttpServlet {
 	   List<Commande> listeDesCommande = commandeDAO.getAllCommandes();
 	    request.setAttribute("commandes", listeDesCommande);
 	    logger.info("Liste des commandes récupérée avec succès : " + listeDesCommande);
-	    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/pages/acceuil.jsp");
-	    dispatcher.forward(request, response);
+	    response.sendRedirect(request.getContextPath() + "/Login");
 	    
 
 
