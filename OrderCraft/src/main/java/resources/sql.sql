@@ -89,3 +89,9 @@ SELECT p.product_id, p.product_name, p.label, p.quantite_in_stock,p.prix_unitair
 FROM commande_produit cp
 JOIN produit p ON cp.product_id = p.product_id
 WHERE cp.commande_id = '140e2';
+
+
+
+
+--requete pour gettCommandeById avec les meme champs de la table pour get all 
+SELECT c.commande_id, c.client_id, c.commande_description, cl.first_name AS client_first_name, cl.last_name AS client_last_name, cl.address AS client_address, c.date_de_commande, c.status, SUM(cp.quantite * p.prix_unitaire) AS prix_final FROM commande c JOIN client cl ON c.client_id = cl.client_id JOIN commande_produit cp ON c.commande_id = cp.commande_id JOIN produit p ON cp.product_id = p.product_id WHERE c.commande_id = '140e2' GROUP BY c.commande_id, c.client_id, c.commande_description, cl.first_name, cl.last_name, cl.address, c.date_de_commande, c.status;

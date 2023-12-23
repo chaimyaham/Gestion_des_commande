@@ -112,7 +112,7 @@ public class CommandeDAOImp implements CommandeDAO{
     
     @Override
 	public Commande getCommandeById(String commandeId) {
-    	String sql="SELECT DISTINCT c.commande_id, c.client_id, c.commande_description, cl.first_name AS client_first_name, cl.last_name AS client_last_name, cl.address AS client_address, c.date_de_commande, c.status FROM commande c JOIN client cl ON c.client_id = cl.client_id JOIN commande_produit cp ON c.commande_id = cp.commande_id JOIN produit p ON cp.product_id = p.product_id WHERE c.commande_id = ?;";
+    	String sql="SELECT c.commande_id, c.client_id, c.commande_description, cl.first_name AS client_first_name, cl.last_name AS client_last_name, cl.address AS client_address, c.date_de_commande, c.status, SUM(cp.quantite * p.prix_unitaire) AS prix_final FROM commande c JOIN client cl ON c.client_id = cl.client_id JOIN commande_produit cp ON c.commande_id = cp.commande_id JOIN produit p ON cp.product_id = p.product_id WHERE c.commande_id = ? GROUP BY c.commande_id, c.client_id, c.commande_description, cl.first_name, cl.last_name, cl.address, c.date_de_commande, c.status;";
 		try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, commandeId);
 
@@ -181,7 +181,7 @@ public class CommandeDAOImp implements CommandeDAO{
              if(i == 1) {
  				
             	 logger.info("Commande ajoute avec success : " );
-        	 insererCommandeToCommadeProduct(commande);
+            	 insererCommandeToCommadeProduct(commande);
  				return commande;
  				
  			}else {
@@ -211,13 +211,17 @@ public class CommandeDAOImp implements CommandeDAO{
 		        ps.setString(1, commande.getCommandeId());
 		        ps.setInt(2, produit.getProductId());
 		        ps.setInt(3, quantite);
-
 		        ps.executeUpdate();
+		        
 		    }
+
 		} catch (SQLException e) {
 		    e.printStackTrace();
 		}	
 	}
+
+
+
 
 
 	@Override
