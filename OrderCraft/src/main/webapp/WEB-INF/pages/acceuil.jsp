@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>Liste des commandes</title>
-    <!-- Ajoutez le lien vers Bootstrap CSS ici -->
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>

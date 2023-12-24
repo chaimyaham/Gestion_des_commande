@@ -101,7 +101,7 @@ public class AddCommande extends HttpServlet {
 	    
 	    Client myClient = clientDAO.getClientByID(Integer.parseInt(selectedClient));
 	
-	    Commande newCommande = new Commande(myClient,date,StatutCommande.EN_COURS,commande_description,produitsEtQuantites);
+	    Commande newCommande = new Commande(myClient,date,StatutCommande.valueOf(selectedStatus.toUpperCase()),commande_description,produitsEtQuantites);
 	    
 	   Commande newc= commandeDAO.addCommande(newCommande);
 	   logger.info("Commande mise à jour avec success : "+newc );

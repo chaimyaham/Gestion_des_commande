@@ -59,7 +59,7 @@
 							    <div class="col-md-6">
 							        <form id="deleteForm" action="${pageContext.request.contextPath}/DeleteProduct" method="post">
 							            <input type="hidden" name="productId" value="<%= produit.getProductId() %>">
-							            <button type="button" class="btn btn-outline-danger" onclick="confirmDelete()">Delete</button>
+							            <button type="submit" class="btn btn-outline-danger" onclick="confirmDelete()">Delete</button>
 							        </form>
 							    </div>
 				</td>
@@ -74,10 +74,18 @@
 
 </div>
 
-<!-- Ajoutez le lien vers Bootstrap JS et jQuery ici -->
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+<script>
+	function confirmDelete() {
+	    var confirmation = confirm("Êtes-vous sûr de vouloir supprimer ce Produit ?");
+	    if (confirmation) {
+	        document.getElementById('deleteForm').submit();
+	    }
+}
+</script>
 </body>
 </html>

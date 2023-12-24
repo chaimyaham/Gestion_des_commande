@@ -11,6 +11,9 @@
 
 <div class="container mt-5">
     <h1 class="mb-4">Ajouter une commande</h1>
+        <form action="${pageContext.request.contextPath}/Login" method="get">
+    	<input class="btn btn-outline-dark mx-2" type="submit"  value="<=" >
+    </form>
 
     <form action="${pageContext.request.contextPath}/AddCommande" method="post">
    

@@ -1,12 +1,11 @@
 package com.orderCraft.gestionCommande.dao.daoImpl;
 
 import java.text.ParseException;
-import java.util.List;
 import java.util.logging.Logger;
 
 import com.orderCraft.gestionCommande.dao.ClientDAO;
 import com.orderCraft.gestionCommande.dao.CommandeDAO;
-import com.orderCraft.gestionCommande.entities.Commande;
+import com.orderCraft.gestionCommande.dao.ProduitDAO;
 
 public class TestDao {
 	private static final Logger logger = Logger.getLogger(TestDao.class.getName());
@@ -16,15 +15,15 @@ public class TestDao {
 	  CommandeDAO commandeDAO = new CommandeDAOImp();
 		ClientDAO cm=new ClientDAOImp();
 //		
-//		ProduitDAO pm= new ProduitDAOImp();
+		ProduitDAO pm= new ProduitDAOImp();
 //
-        List<Commande> commandes = commandeDAO.getAllCommandes();
+//        List<Commande> commandes = commandeDAO.getAllCommandes();
 //
 
 //
-        for (Commande commande : commandes) {
-	            System.out.println(commande);
-     }
+//        for (Commande commande : commandes) {
+//	            System.out.println(commande);
+//     }
 //	  Client client=new Client(1,"new firstname","new lasteame ","new address");
 //		  HashMap<Integer, Integer> produitsEtQuantites = new HashMap<>();
 //		  produitsEtQuantites.put(1, 5); 
@@ -59,7 +58,7 @@ public class TestDao {
 //       }
 //		   
 //		Produit produit=new Produit("hi again","hello",195);
-//	System.out.print(pm.getProduitById(2));
+	System.out.print(pm.getProduitById(3));
 		
 //		pm.deleteProduit(2);
 		
