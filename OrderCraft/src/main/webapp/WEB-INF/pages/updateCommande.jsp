@@ -40,7 +40,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="produit">Choisir un produit :</label>
-                    <select class="form-control" name="produit">
+                    <select class="form-control" name="produitt">
                     <option value="-1">choisis  un Produit</option>
                     <% List<Produit> produits = (List<Produit>) request.getAttribute("produits"); %>
                         <% for (Produit produit : produits) { %>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label for="quantite">Quantité :</label>
-                    <input type="number" class="form-control" name="quantite" required>
+                    <input type="number" class="form-control" name="quantitte" >
                     
                 </div>
                    <div class="form-group col-md-2  d-flex align-items-end ">
@@ -95,8 +95,8 @@
 <script>
     function ajouterProduit() {
 
-        var produitSelect = document.querySelector('select[name="produit"]');
-        var quantiteInput = document.querySelector('input[name="quantite"]');
+        var produitSelect = document.querySelector('select[name="produitt"]');
+        var quantiteInput = document.querySelector('input[name="quantitte"]');
         var produitId = produitSelect.value;
         var produitNom = produitSelect.options[produitSelect.selectedIndex].text;
         var quantite = quantiteInput.value;

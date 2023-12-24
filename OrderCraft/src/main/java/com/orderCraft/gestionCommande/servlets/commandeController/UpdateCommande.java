@@ -67,47 +67,59 @@ public class UpdateCommande extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String commandeIDToUpdate = request.getParameter("commandeIdToUpdate");
-		String[] produits = request.getParameterValues("produit");
-		String[] quantites = request.getParameterValues("quantite");
-		HashMap<Produit, Integer> produitsEtQuantites = new HashMap<>();
-		  ProduitDAO produitDAO = new ProduitDAOImp();
-		for (int i = 0; i < produits.length; i++) {
-		    int produitId = Integer.parseInt(produits[i]);
-		    Produit nouveauProduit=produitDAO.getProduitById(produitId);
-		    int quantite = Integer.parseInt(quantites[i]);
-		    produitsEtQuantites.put(nouveauProduit, quantite);
-		}
+
+	    
+	    
+	    String commandeIDToUpdate = request.getParameter("commandeIdToUpdate");
+	    String[] produits = request.getParameterValues("produit");
+	    String[] quantites = request.getParameterValues("quantite");
+	    HashMap<Produit, Integer> produitsEtQuantites = new HashMap<>();
+	    ProduitDAO produitDAO = new ProduitDAOImp();
+
+	    if (produits != null && quantites != null && produits.length > 0 && quantites.length > 0) {
+	    	  
+	    	  produitsEtQuantites = new HashMap<>();
+	        for (int i = 0; i < produits.length; i++) {
+	        
+	            int produitId = Integer.parseInt(produits[i]);
+	            Produit nouveauProduit = produitDAO.getProduitById(produitId);
+	            int quantite = Integer.parseInt(quantites[i]);
+	            produitsEtQuantites.put(nouveauProduit, quantite);
+	        }
+	    } else {
+	    	  logger.info("on the else");
+	        Commande commandeExistante = commandeDAO.getCommandeById(commandeIDToUpdate);
+	        produitsEtQuantites = commandeExistante.getListeDesProduitsEtLeursQuantite();
+	    }
+
 	    String selectedClient = request.getParameter("client");
 	    String selectedStatus = request.getParameter("status");
 	    String commande_description = request.getParameter("commande_description");
 	    String dateDeCommande = request.getParameter("dateDeCommande");
-	    
-		  SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-		     String dateStr = dateDeCommande;
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	    String dateStr = dateDeCommande;
+	    Date date;
 
-	         
-	         Date date;
-			try {
-				date = dateFormat.parse(dateStr);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				date=null;
-				e.printStackTrace();
-			}
-	    
+	    try {
+	        date = dateFormat.parse(dateStr);
+	    } catch (ParseException e) {
+	        date = null;
+	        e.printStackTrace();
+	    }
+
 	    Client myClient = clientDAO.getClientByID(Integer.parseInt(selectedClient));
-	
-	    Commande newCommande = new Commande(myClient,date,StatutCommande.valueOf(selectedStatus.toUpperCase()),commande_description,produitsEtQuantites);
-	    
-	   Commande newc= commandeDAO.updateCommande(commandeIDToUpdate, newCommande);
-	   logger.info("Commande mise à jour avec success : "+newc );
-	 
-	   List<Commande> listeDesCommande = commandeDAO.getAllCommandes();
+
+	    Commande newCommande = new Commande(myClient, date, StatutCommande.valueOf(selectedStatus.toUpperCase()), commande_description, produitsEtQuantites);
+
+	    Commande newc = commandeDAO.updateCommande(commandeIDToUpdate, newCommande);
+	    logger.info("Commande mise à jour avec succès : " + newc);
+
+	    List<Commande> listeDesCommande = commandeDAO.getAllCommandes();
 	    request.setAttribute("commandes", listeDesCommande);
 	    logger.info("Liste des commandes récupérée avec succès : " + listeDesCommande);
 	    response.sendRedirect(request.getContextPath() + "/Login");
+
 		
 	}
 
